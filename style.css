@@ -17,14 +17,15 @@ body {
 
 /* Container Principal do App */
 .container {
-    max-width: 800px;
-    margin: 0 auto;
+    width: 92%; /* Não deixa colar nas bordas do celular, usando 92% da tela */
+    max-width: 800px; /* Limita o tamanho máximo no computador */
+    margin: 20px auto; /* O 'auto' centraliza o bloco na horizontal perfeitamente */
     background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    border-radius: 12px; /* Deixa os cantos da caixinha arredondados e bonitos */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    box-sizing: border-box; /* Garante que os paddings não empurrem a caixa para fora */
 }
-
 /* Cabeçalhos */
 h2 {
     color: #2c3e50;
@@ -253,56 +254,23 @@ body {
    ADAPTAÇÃO PARA TELAS PEQUENAS (CELULAR)
    ========================================================================== */
 @media (max-width: 600px) {
-    /* 1. Diminui o espaçamento das bordas da tela para sobrar mais espaço */
     body {
-        padding: 10px;
+        padding: 10px 0; /* Dá um espaço leve no topo e no fundo da tela do celular */
+        background-color: #f1f5f9; /* Garante que a cor de fundo contraste com o card branco */
     }
 
     .container {
-        padding: 15px 10px;
-        margin: 0;
+        width: 92%; /* Mantém o recuo de 4% de cada lado no mobile */
+        margin: 10px auto; /* Força a centralização e desgruda do topo */
+        padding: 15px; /* Deixa o espaço interno interno um pouco menor para aproveitar a tela */
+    }
+
+    /* Evita que inputs fiquem maiores que a caixinha branca */
+    input, select, button {
         width: 100%;
         box-sizing: border-box;
     }
-
-    /* 2. MATADOR DE ZOOM AUTOMÁTICO: Força o tamanho mínimo de 16px nos campos */
-    input[type="number"],
-    input[type="date"],
-    input[type="password"],
-    select {
-        font-size: 16px !important; /* Obriga o celular a não dar zoom */
-        padding: 10px; /* Deixa o campo mais fácil de tocar com o dedo */
-    }
-
-    /* 3. Ajusta os botões para não ocuparem espaço exagerado */
-    button {
-        padding: 12px;
-        font-size: 15px;
-    }
-
-    /* 4. BLINDAGEM DA TABELA: Cria uma rolagem macia só na tabela, sem quebrar o site */
-    table {
-        font-size: 13px; /* Diminui um pouco as letras da tabela para caber mais */
-    }
-
-    th, td {
-        padding: 8px 4px; /* Espremendo o espaçamento interno das células */
-    }
-
-    /* Garante que o container da tabela permita rolar para os lados se faltar espaço */
-    div[style*="overflow-x: auto"] {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* Deixa a rolagem no celular bem lisinha */
-        margin-top: 10px;
-        border: 1px solid #e2e8f0;
-        border-radius: 6px;
-    }
     
-    /* Diminui o tamanho do botão apagar para economizar espaço na linha */
-    .btn-deletar {
-        padding: 4px 8px;
-        font-size: 11px;
-    }
     .login-box{
         display: flex;
         flex-direction: column;
