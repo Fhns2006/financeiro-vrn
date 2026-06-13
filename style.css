@@ -253,24 +253,56 @@ body {
    ADAPTAÇÃO PARA TELAS PEQUENAS (CELULAR)
    ========================================================================== */
 @media (max-width: 600px) {
+    /* 1. Diminui o espaçamento das bordas da tela para sobrar mais espaço */
     body {
         padding: 10px;
     }
 
     .container {
-        padding: 15px;
+        padding: 15px 10px;
+        margin: 0;
+        width: 100%;
+        box-sizing: border-box;
     }
 
-    .filtros {
-        flex-direction: column; /* Coloca os filtros um embaixo do outro no celular */
-        gap: 0;
+    /* 2. MATADOR DE ZOOM AUTOMÁTICO: Força o tamanho mínimo de 16px nos campos */
+    input[type="number"],
+    input[type="date"],
+    input[type="password"],
+    select {
+        font-size: 16px !important; /* Obriga o celular a não dar zoom */
+        padding: 10px; /* Deixa o campo mais fácil de tocar com o dedo */
+    }
+
+    /* 3. Ajusta os botões para não ocuparem espaço exagerado */
+    button {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    /* 4. BLINDAGEM DA TABELA: Cria uma rolagem macia só na tabela, sem quebrar o site */
+    table {
+        font-size: 13px; /* Diminui um pouco as letras da tabela para caber mais */
+    }
+
+    th, td {
+        padding: 8px 4px; /* Espremendo o espaçamento interno das células */
+    }
+
+    /* Garante que o container da tabela permita rolar para os lados se faltar espaço */
+    div[style*="overflow-x: auto"] {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* Deixa a rolagem no celular bem lisinha */
+        margin-top: 10px;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
     }
     
-    th, td {
-        padding: 10px;
-        font-size: 14px;
+    /* Diminui o tamanho do botão apagar para economizar espaço na linha */
+    .btn-deletar {
+        padding: 4px 8px;
+        font-size: 11px;
     }
-
     .login-box{
         display: flex;
         flex-direction: column;
