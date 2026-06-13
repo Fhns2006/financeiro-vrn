@@ -1,0 +1,281 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS E RESET
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #eef2f7;
+    color: #333;
+    padding: 20px;
+    line-height: 1.5;
+}
+
+/* Container Principal do App */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Cabeçalhos */
+h2 {
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+p {
+    color: #7f8c8d;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #34495e;
+    font-size: 18px;
+    margin-bottom: 15px;
+    border-left: 5px solid #0c9ce4;
+    padding-left: 10px;
+}
+
+hr {
+    margin: 25px 0;
+    border: 0;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* ==========================================================================
+   FORMULÁRIOS E ENTRADAS DE DADOS
+   ========================================================================== */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #4a5568;
+}
+
+input[type="date"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #334155;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Efeito azulzinho ao clicar nos campos */
+input:focus, select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Filtros lado a lado */
+.filtros {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.filtros .form-group {
+    flex: 1;
+}
+
+/* ==========================================================================
+   BOTÕES
+   ========================================================================== */
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 14px;
+    background-color: #0c9ce4;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #0024a6;
+    box-shadow: 17px 11px 71px 21px rgba(144,211,255,1);
+    -webkit-box-shadow: 17px 11px 71px 21px rgba(144,211,255,1);
+    -moz-box-shadow: 17px 11px 71px 21px rgba(144,211,255,1);
+}
+
+/* Botão específico do Excel */
+.btn-excel {
+    background-color: #0c9ce4;
+    margin-top: 20px;
+}
+
+.btn-excel:hover {
+    background-color: #0024a6;
+    box-shadow: 17px 11px 71px 21px rgba(144,211,255,1);
+    -webkit-box-shadow: 17px 11px 71px 21px rgba(144,211,255,1);
+    -moz-box-shadow: 17px 11px 71px 21px rgba(144,211,255,1);
+}
+
+/* Botão pequeno de Apagar/Deletar */
+.btn-deletar {
+    background-color: #e74c3c;
+    padding: 6px 12px;
+    font-size: 13px;
+    width: auto;
+    margin: 0;
+}
+
+.btn-deletar:hover {
+    background-color: #c0392b;
+}
+
+/* ==========================================================================
+   TABELA DE RELATÓRIO
+   ========================================================================== */
+.tabela-container {
+    overflow-x: auto; /* Cria barra de rolagem se a tabela for maior que a tela do celular */
+    margin-top: 15px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    font-size: 15px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+th {
+    background-color: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+}
+
+/* Linhas alternadas com cor diferente (Zebra) */
+tbody tr:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+tbody tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Rodapé de Totais */
+tfoot {
+    font-weight: bold;
+    background-color: #f1f5f9;
+    color: #1e293b;
+}
+
+tfoot td {
+    border-top: 2px solid #cbd5e1;
+}
+
+body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f1f5f9;
+            margin: 0;
+        }
+        .login-box {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .login-box h2 {
+            margin-bottom: 5px;
+            color: #1e293b;
+        }
+        .login-box p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .login-box button {
+            width: 100%;
+            margin-top: 15px;
+            background-color: #0080ff;
+        }
+        .login-box button:hover {
+            background-color: #0024a6;
+            box-shadow: 17px 11px 71px 21px rgba(144,211,255,1);
+            -webkit-box-shadow: 17px 11px 71px 21px rgba(144,211,255,1);
+            -moz-box-shadow: 17px 11px 71px 21px rgba(144,211,255,1);
+        }
+
+#senhaAcessoSite{
+    font-size: 15px;
+    color: #237fb8;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+    text-align: center;
+}
+
+
+/* ==========================================================================
+   ADAPTAÇÃO PARA TELAS PEQUENAS (CELULAR)
+   ========================================================================== */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .filtros {
+        flex-direction: column; /* Coloca os filtros um embaixo do outro no celular */
+        gap: 0;
+    }
+    
+    th, td {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .login-box{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Vila Rio Negro</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Estilos para centralizar a caixa de login perfeitamente na tela */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f1f5f9;
+            margin: 0;
+        }
+        .login-box {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .login-box h2 {
+            margin-bottom: 5px;
+            color: #1e293b;
+        }
+        .login-box p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .login-box button {
+            width: 100%;
+            margin-top: 15px;
+            background-color: #0080ff;
+        }
+        .login-box button:hover {
+            background-color: #0024a6;
+            box-shadow: 17px 11px 71px 21px rgba(144,211,255,1);
+            -webkit-box-shadow: 17px 11px 71px 21px rgba(144,211,255,1);
+            -moz-box-shadow: 17px 11px 71px 21px rgba(144,211,255,1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-box">
+    <h2>Vila Rio Negro</h2>
+    <p>Acesso ao Sistema de Donativos</p>
+    
+    <div class="form-group" style="text-align: left;">
+        <label id="senhaAcessoSite" for="senhaAcesso">Digite a Senha de Acesso:</label>
+        <input type="password" id="senhaAcesso" placeholder="••••••••" style="width: 100%; box-sizing: border-box;">
+    </div>
+    
+    <button onclick="verificarSenha()">Entrar no Sistema</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    // Configurações de Conexão da Tela de Login
+    const SUPABASE_URL = "https://rdmgaaxxwturbmldzukx.supabase.co"; 
+    const SUPABASE_ANON_KEY = "sb_publishable_ID8o4CD7cC6CE8cvRCu9Og_avFuc15O";
+    const conexaoSupabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // Atalho: Permite apertar a tecla "Enter" no teclado para fazer o login
+    document.getElementById('senhaAcesso').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') verificarSenha();
+    });
+
+    async function verificarSenha() {
+        const senhaDigitada = document.getElementById('senhaAcesso').value;
+
+        if (!senhaDigitada) {
+            Swal.fire({ icon: 'warning', title: 'Atenção', text: 'Por favor, digite a senha!', confirmButtonColor: '#34495e' });
+            return;
+        }
+
+        // Puxa a senha cadastrada na tabela 'configuracoes' do Supabase
+        const { data, error } = await conexaoSupabase
+            .from('configuracoes')
+            .select('valor')
+            .eq('chave', 'senha_sistema')
+            .single();
+
+        if (error || !data) {
+            console.error(error);
+            Swal.fire({ icon: 'error', title: 'Erro', text: 'Não foi possível validar a senha no servidor.', confirmButtonColor: '#e74c3c' });
+            return;
+        }
+
+        // Verifica se a senha bate com o banco de dados
+        if (senhaDigitada === data.valor) {
+            // Define o token de segurança no navegador
+            localStorage.setItem('usuarioLogado', 'sim');
+            // Redireciona para o sistema
+            window.location.href = "sistema.html";
+        } else {
+            Swal.fire({ icon: 'error', title: 'Acesso Negado', text: 'Senha incorreta! Tente novamente.', confirmButtonColor: '#e74c3c' });
+        }
+    }
+</script>
+
+</body>
+</html>

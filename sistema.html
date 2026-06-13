@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Donativos - Vila Rio Negro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Congregação Vila Rio Negro</h2>
+    <p>Sistema de Controle de Donativos</p>
+    
+    <button onclick="deslogar()" style="background-color: #e74c3c; margin-bottom: 20px;">
+        🚪 Sair do Sistema
+    </button>
+    
+    <hr>
+
+    <div class="formulario">
+        <h3>Novo Lançamento</h3>
+        <div class="form-group">
+            <label for="dataDonativo">Data do Donativo:</label>
+            <input type="date" id="dataDonativo" required>
+        </div>
+        <div class="form-group">
+            <label for="valorMundial">Valor Obra Mundial (R$):</label>
+            <input type="number" id="valorMundial" step="0.01" placeholder="0,00" min="0">
+        </div>
+        <div class="form-group">
+            <label for="valorCongregacao">Valor Despesas Congregação (R$):</label>
+            <input type="number" id="valorCongregacao" step="0.01" placeholder="0,00" min="0">
+        </div>
+        <button onclick="salvarDonativo()">Salvar Lançamento</button>
+    </div>
+
+    <hr>
+
+    <div class="relatorio">
+        <h3>Visualização e Filtros</h3>
+        <div class="filtros">
+            <div class="form-group">
+                <label for="filtroMes">Mês:</label>
+                <select id="filtroMes" onchange="buscarDonativos()">
+                    <option value="01">Janeiro</option>
+                    <option value="02">Fevereiro</option>
+                    <option value="03">Março</option>
+                    <option value="04">Abril</option>
+                    <option value="05">Maio</option>
+                    <option value="06">Junho</option>
+                    <option value="07">Julho</option>
+                    <option value="08">Agosto</option>
+                    <option value="09">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="filtroAno">Ano:</label>
+                <select id="filtroAno" onchange="buscarDonativos()">
+                    <option value="2026">2026</option>
+                    <option value="2027">2027</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Obra Mundial</th>
+                        <th>Despesas Congregação</th>
+                        <th>Total do Lançamento</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaCorpo">
+                    </tbody>
+                <tfoot>
+                    <tr>
+                        <td>TOTAL DO MÊS:</td>
+                        <td id="totalMundial">R$ 0,00</td>
+                        <td id="totalCongregacao">R$ 0,00</td>
+                        <td id="totalGeralGeral" style="color: #27ae60; font-weight: bold;">R$ 0,00</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <button class="btn-excel" onclick="gerarExcel()">📊 Gerar Planilha Excel (.xlsx)</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="app.js"></script>
+
+</body>
+</html>
